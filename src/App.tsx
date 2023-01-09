@@ -1,25 +1,49 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
+import Error from "./pages/Error";
 
 function App() {
+  let activeClassName = "nav-active";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="font-bold underline text-3xl">Hello World~</h1>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <nav>
+          <NavLink
+            to=""
+            className={({ isActive }) =>
+              isActive ? activeClassName : undefined
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="sign-in"
+            className={({ isActive }) =>
+              isActive ? activeClassName : undefined
+            }
+          >
+            Sign In
+          </NavLink>
+          <NavLink
+            to="sign-up"
+            className={({ isActive }) =>
+              isActive ? activeClassName : undefined
+            }
+          >
+            Sign Up
+          </NavLink>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
