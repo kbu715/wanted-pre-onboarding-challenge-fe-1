@@ -1,5 +1,5 @@
-import { useAuth } from "contexts/AuthContext";
-import { Navigate, NavLink, Outlet } from "react-router-dom";
+import { useAuth } from 'contexts/AuthContext';
+import { Navigate, NavLink, Outlet } from 'react-router-dom';
 
 const ProtectedLayout = () => {
   const ctx = useAuth();
@@ -11,18 +11,13 @@ const ProtectedLayout = () => {
   return (
     <div>
       <nav>
-        <NavLink
-          to="/home"
-          className={({ isActive }) =>
-            isActive ? 'nav-active' : undefined
-          }
-        >
+        <NavLink to="/home" className={({ isActive }) => (isActive ? 'nav-active' : undefined)}>
           Home
         </NavLink>
       </nav>
       <Outlet />
     </div>
-  )
+  );
 };
 
 export default ProtectedLayout;

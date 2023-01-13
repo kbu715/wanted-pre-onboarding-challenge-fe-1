@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useState } from 'react';
 
-export const useLocalStorage = (key: string, defaultValue: string | null): [string | null, (newValue: string | null) => void] => {
+export const useLocalStorage = (
+  key: string,
+  defaultValue: string | null,
+): [string | null, (newValue: string | null) => void] => {
   const [storedValue, setStoredValue] = useState<string | null>(() => {
     try {
       const value = window.localStorage.getItem(key);
@@ -18,13 +21,13 @@ export const useLocalStorage = (key: string, defaultValue: string | null): [stri
   const setValue = (newValue: string | null) => {
     if (typeof newValue === 'string') {
       try {
-      window.localStorage.setItem(key, JSON.stringify(newValue));
+        window.localStorage.setItem(key, JSON.stringify(newValue));
       } catch (error) {
         console.log('setValue error:' + error);
       }
     }
     setStoredValue(newValue);
-  }
+  };
 
   return [storedValue, setValue];
-}
+};
