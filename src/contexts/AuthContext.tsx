@@ -26,13 +26,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   // call this function when you want to authenticate the user
   const login = async (data: string) => {
     setUser(data);
-    navigate("/profile");
+    navigate("/home");
   };
 
   // call this function to sign out logged in user
   const logout = () => {
     setUser(null);
-    navigate("/", { replace: true });
+    navigate("/auth/sign-in", { replace: true });
   };
 
   const value = useMemo(
