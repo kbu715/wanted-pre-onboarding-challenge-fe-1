@@ -1,9 +1,17 @@
-// For routes that can only be accessed by authenticated users
-const AuthGuard = ({ children }: { children: React.ReactNode }) => {
-  // if (!token) {
-  //   return <Redirect to="/auth/sign-in" />;
-  // }
 
+import { useAuth } from "contexts/AuthContext";
+import { Navigate } from "react-router-dom";
+
+type AuthGuardType = {
+  children: JSX.Element | null
+}
+
+const AuthGuard = ({ children }: AuthGuardType) => {
+  const ctx = useAuth();
+  if (!ctx || !ctx.user) {
+    // user is not authenticated
+    return <Navigate to="/sign-in" />;
+  }
   return children;
 };
 

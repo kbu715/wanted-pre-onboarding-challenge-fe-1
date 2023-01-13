@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Error from "./pages/Error";
+import AuthGuard from "./components/AuthGuard";
 
 function App() {
   let activeClassName = "nav-active";
@@ -37,7 +38,7 @@ function App() {
           </NavLink>
         </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AuthGuard><Home /></AuthGuard>} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<Error />} />
